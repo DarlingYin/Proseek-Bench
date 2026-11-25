@@ -21,14 +21,13 @@ ProSeek-Bench evaluates whether mobile agents can recognize unspoken user needs,
 | :---: | :---: | :---: | :---: | :---: |
 | **373** | **37** | 122 | 183 | 68 |
 
-<details>
-<summary><strong>🧩 Benchmark construction</strong></summary>
+### 🧩 Benchmark Construction
 
 <p align="center">
   <img src="assets/construction.png" alt="Construction pipeline covering synthetic phone worlds, frame-aligned GUI streams, and human-adjudicated references." width="900">
 </p>
 
-</details>
+<p align="center"><em>User-specific phone worlds, state-aligned GUI streams, and human-adjudicated references.</em></p>
 
 ## Online Evaluation
 

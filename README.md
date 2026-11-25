@@ -42,23 +42,23 @@ Human-adjudicated references support three nested checks. **Need** measures alig
 
 ## Main Results
 
-Overall results across **373 episodes**. F1 scores are micro-averaged percentages. **Step** is the mean number of accepted searches per episode.
+Overall results across **373 episodes**, sorted by Evidence F1 from lowest to highest. Ties are ordered by Time F1, then Need F1. F1 scores are micro-averaged percentages. **Step** is the mean number of accepted searches per episode.
 
 | Model | Need F1 ↑ | Time F1 ↑ | Evidence F1 ↑ | Step |
 | :--- | ---: | ---: | ---: | ---: |
-| GLM-5.3-Flash | 34.6 | 26.6 | 17.7 | 4.35 |
-| Qwen3.8-Flash | 39.8 | 30.6 | 20.8 | 4.92 |
-| DeepSeek-V4.1-Flash | 39.7 | 32.5 | 22.3 | 7.41 |
-| Doubao-Seed-2.1-Pro | 34.2 | 27.1 | 20.1 | 6.37 |
-| Kimi-K3.1 Pro | 41.8 | 34.4 | 26.5 | 5.83 |
-| **GPT-6.1 Sol** | **61.0** | **50.9** | **42.6** | 9.96 |
+| InternVL3.5-8B | 1.6 | 0.2 | 0.2 | 1.60 |
+| Step3-VL-10B | 1.4 | 0.3 | 0.3 | 2.71 |
+| GLM-4.6V-Flash (9B) | 0.9 | 0.5 | 0.3 | 1.85 |
+| MiMo-VL-7B-SFT | 8.4 | 3.9 | 1.5 | 1.63 |
 | Qwen3.5-35B-A3B | 13.9 | 8.5 | 4.3 | 4.65 |
 | Gemma-4-31B-IT | 22.5 | 14.5 | 7.8 | 2.45 |
 | Qwen3.8-27B | 30.8 | 21.8 | 13.9 | 3.66 |
-| InternVL3.5-8B | 1.6 | 0.2 | 0.2 | 1.60 |
-| GLM-4.6V-Flash (9B) | 0.9 | 0.5 | 0.3 | 1.85 |
-| Step3-VL-10B | 1.4 | 0.3 | 0.3 | 2.71 |
-| MiMo-VL-7B-SFT | 8.4 | 3.9 | 1.5 | 1.63 |
+| GLM-5.3-Flash | 34.6 | 26.6 | 17.7 | 4.35 |
+| Doubao-Seed-2.1-Pro | 34.2 | 27.1 | 20.1 | 6.37 |
+| Qwen3.8-Flash | 39.8 | 30.6 | 20.8 | 4.92 |
+| DeepSeek-V4.1-Flash | 39.7 | 32.5 | 22.3 | 7.41 |
+| Kimi-K3.1 Pro | 41.8 | 34.4 | 26.5 | 5.83 |
+| **GPT-6.1 Sol** | **61.0** | **50.9** | **42.6** | 9.96 |
 
 [Download the full results (CSV)](assets/main-results.csv), including Recall, F1, and Step for each setting and the overall benchmark.
 

@@ -1,0 +1,10 @@
+{
+  "schema_version": "proseekbench.prompt-registry.v1",
+  "assembly_order": ["system", "policy", "search_protocol", "decision_schema", "static_tool_context"],
+  "modes": {
+    "framework": {
+      "default_version": "v2",
+      "versions": {"v2": "framework/v2/profile.json"}
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "proactivebench.model-provider-policy.v1",
+  "default_routing": "family_locked",
+  "allow_cross_provider_fallback": false,
+  "registered_local_models": [
+    {
+      "model_id": "qwen27b-local",
+      "canonical_model": "Qwen3.8-27B",
+      "deployment": "31300",
+      "purpose": "local reproducibility baseline"
+    }
+  ],
+  "registered_evaluation_models": [
+    {
+      "model_id": "qwen3.8-flash",
+      "provider": "qianwen",
+      "purpose": "hosted Flash evaluation"
+    },
+    {
+      "model_id": "qwen3.8-max",
+      "provider": "qianwen",
+      "purpose": "hosted Max evaluation"
+    },
+    {
+      "model_id": "deepseek-v4.1-flash",
+      "provider": "qianwen",
+      "purpose": "hosted Flash evaluation"
+    },
+    {
+      "model_id": "glm-5.3-flash",
+      "provider": "bigmodel",
+      "purpose": "native multimodal hosted evaluation",
+      "input_modalities": ["text", "image", "video", "file"],
+      "thinking": "required"
+    },
+    {
+      "model_id": "glm-5.3-flashx",
+      "provider": "bigmodel",
+      "purpose": "faster native multimodal hosted evaluation",
+      "input_modalities": ["text", "image", "video", "file"],
+      "thinking": "required"
+    },
+    {
+      "model_id": "doubao-seed-2.1-pro",
+      "provider": "volcengine_coding",
+      "purpose": "hosted multimodal Framework evaluation",
+      "input_modalities": ["text", "image"],
+      "reasoning_effort": "low"
+    },
+    {
+      "model_id": "kimi-k3.1-pro",
+      "provider": "volcengine_coding",
+      "purpose": "hosted multimodal Framework evaluation with provider-required temperature",
+      "input_modalities": ["text", "image"],
+      "reasoning_effort": "low",
+      "temperature": 1,
+      "temperature_constraint": "provider_required"
+    }
+  ],
+  "model_route_exceptions": {
+    "z-ai/glm-5.3-flash": {
+      "provider": "openrouter",
+      "reason": "Use the explicitly validated native-multimodal route."
+    }
+  },
+  "providers": {
+    "qianwen": {
+      "label": "Qianwen-compatible API",
+      "api_base": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+      "model_family_markers": ["qwen", "deepseek"],
+      "api_key_env": "QIANWEN_API_KEY"
+    },
+    "bigmodel": {
+      "label": "Zhipu BigModel OpenAI-compatible API",
+      "api_base": "https://open.bigmodel.cn/api/paas/v4",
+      "model_family_markers": ["glm"],
+      "api_key_env": "GLM_API_KEY"
+    },
+    "volcengine_coding": {
+      "label": "Volcengine Ark Coding Plan OpenAI-compatible API",
+      "api_base": "https://ark.cn-beijing.volces.com/api/coding/v3",
+      "model_family_markers": ["doubao-seed", "kimi-k"],
+      "api_key_env": "VOLCENGINE_CODING_API_KEY"
+    },
+    "openrouter": {
+      "label": "OpenRouter",
+      "api_base": "https://openrouter.ai/api/v1",
+      "model_family_markers": ["gpt", "openai/", "claude", "anthropic/", "gemini", "google/"],
+      "api_key_env": "OPENROUTER_API_KEY"
+    }
+  }
+}

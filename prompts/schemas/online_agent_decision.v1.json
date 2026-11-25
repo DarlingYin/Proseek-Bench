@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "online-mobile-agent://schemas/decision.v1",
+  "title": "Online Mobile Agent Decision v1",
+  "type": "object",
+  "properties": {
+    "thread_ops": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "op": {"const": "create"},
+              "thread_id": {"type": "string", "minLength": 1, "maxLength": 64},
+              "need": {"type": "string", "minLength": 1, "maxLength": 500},
+              "claims": {"type": "string", "minLength": 1, "maxLength": 2000}
+            },
+            "required": ["op", "thread_id", "need", "claims"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {"const": "update"},
+              "thread_id": {"type": "string", "minLength": 1, "maxLength": 64},
+              "need": {"type": "string", "minLength": 1, "maxLength": 500},
+              "claims": {"type": "string", "minLength": 1, "maxLength": 2000}
+            },
+            "required": ["op", "thread_id"],
+            "anyOf": [
+              {"required": ["need"]},
+              {"required": ["claims"]}
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {"const": "delete"},
+              "thread_id": {"type": "string", "minLength": 1, "maxLength": 64},
+              "reason": {"type": "string", "minLength": 1, "maxLength": 500}
+            },
+            "required": ["op", "thread_id", "reason"],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "control": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {"const": "search"},
+            "tool": {"type": "string", "minLength": 1, "maxLength": 128},
+            "arguments": {"type": "object"},
+            "linked_thread_ids": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1, "maxLength": 64},
+              "uniqueItems": true
+            }
+          },
+          "required": ["type", "tool", "arguments", "linked_thread_ids"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {"const": "wait"}
+          },
+          "required": ["type"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {"const": "commit"},
+            "thread_ids": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1, "maxLength": 64},
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": ["type", "thread_ids"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["thread_ops", "control"],
+  "additionalProperties": false
+}

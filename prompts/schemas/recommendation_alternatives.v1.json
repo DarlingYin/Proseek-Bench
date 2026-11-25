@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proactivebench.recommendation-alternatives.v1",
+  "title": "ProactiveBench recommendation ground-truth alternatives",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relation",
+    "match_policy",
+    "options"
+  ],
+  "properties": {
+    "relation": {
+      "const": "OR"
+    },
+    "match_policy": {
+      "const": "any_one_supported_option_satisfies_need"
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "alternative_id",
+          "need",
+          "need_claims"
+        ],
+        "properties": {
+          "alternative_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "need": {
+            "type": "string",
+            "minLength": 1
+          },
+          "need_claims": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

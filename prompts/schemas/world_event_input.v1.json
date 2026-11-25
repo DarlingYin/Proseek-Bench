@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "online-mobile-agent://schemas/world-event-input.v1",
+  "title": "ProactiveBench World Event Input v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "proactivebench.world-event-input.v1"
+    },
+    "world_event_input_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "passive_reuse": {
+      "type": "object"
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "event_id": {"type": "string", "minLength": 1},
+          "sequence": {"type": "integer", "minimum": 1},
+          "type": {"type": "string", "minLength": 1},
+          "logical_time": {"type": "string", "format": "date-time"},
+          "update_ref": {"type": "string", "minLength": 1},
+          "compiled_plan_ref": {"type": "string", "minLength": 1},
+          "application": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": ["apply_via_hook", "mirror_observed_gui_effect"]
+              },
+              "source_observation": {"type": "string", "minLength": 1}
+            },
+            "required": ["mode"],
+            "additionalProperties": false
+          },
+          "activation": {
+            "type": "object",
+            "properties": {
+              "after_observation": {"type": "string", "minLength": 1},
+              "after_capture_frame": {"type": "string", "minLength": 1},
+              "before_observation": {"type": "string", "minLength": 1},
+              "before_capture_frame": {"type": "string", "minLength": 1},
+              "wait_for_agent_turn": {"type": "boolean"}
+            },
+            "required": ["after_observation", "before_observation"],
+            "additionalProperties": false
+          },
+          "exposure": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": ["passive_gui", "active_query", "mixed"]
+              },
+              "decisive_facts_passively_sufficient": {"type": "boolean"},
+              "first_passive_observation": {
+                "type": ["string", "null"]
+              },
+              "active_query_required": {"type": "boolean"}
+            },
+            "required": [
+              "mode",
+              "decisive_facts_passively_sufficient",
+              "first_passive_observation",
+              "active_query_required"
+            ],
+            "additionalProperties": false
+          },
+          "foreground_policy": {"type": "string"},
+          "description": {"type": "string"}
+        },
+        "required": [
+          "event_id",
+          "sequence",
+          "type",
+          "logical_time",
+          "update_ref",
+          "activation",
+          "exposure"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "world_event_input_id",
+    "description",
+    "events"
+  ],
+  "additionalProperties": false
+}

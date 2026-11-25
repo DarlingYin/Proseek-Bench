@@ -1,0 +1,14 @@
+{
+  "version": "concise-decision-memory-query-v2.3.3",
+  "inference_mode": "framework",
+  "memory_mode": "need_threads",
+  "prompt_input_contract": "compact-contracts-v1",
+  "decision_schema": "../../../schemas/online_agent_decision.v1.json",
+  "search_budget": 20,
+  "max_searches_per_observation": 20,
+  "prompts": {
+    "system": "../../shared/v2/system.md",
+    "policy": "policy.md",
+    "search_protocol": "search_protocol.md"
+  }
+}
